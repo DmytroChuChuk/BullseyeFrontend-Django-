@@ -1,0 +1,82 @@
+{% load static unicorn %}
+<div>
+    <div class="payment_table border border-secondary">
+      <table id="data_table" class="table mb-0 text-white align-middle" style="width: 100%">
+        <thead>
+          <tr>
+            <th scope="col"><span class="text-capitalize">Lottery</span></th>
+            <th scope="col"><span class="text-capitalize" id="pics">My Pics</span></th>
+            <th scope="col"><span class="text-capitalize" id="ball1_text">Draw</span></th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for draw in recent_draws %}
+             <tr><td style="border-top: 0px">{{ draw.date }} ::: {{ draw.lottery.game }} ::: {{ draw.balls }}</td></tr>
+            {%  ifchanged draw.date %}
+             <tr><td style="border-top: 0px">{{ draw.date }}</td></tr>
+            {% endifchanged %}
+            {%  ifchanged draw.lottery.game %}
+                 <tr>
+                     <td>
+                        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+                          <img src="{% static 'images/' %}{{ draw.lottery.image_name }}" class="img_logo">
+                          <span class="text-warning mb-0">{{ draw.lottery.game }} ::: {{ draw.date }}</span>
+                          <h5 class="mb-0 text_lgray text-capitalize">{{ draw.lottery.location }}</h5>
+                        </div>
+                    </td>
+                 </tr>
+            {% endifchanged %}
+        {% endfor %}
+
+
+{#         {%  for date,date_dict in recent_dict.items  %}#}
+{#             <tr><td style="border-top: 0px">{{ date }}</td></tr>#}
+{#             {% for lottery_id, draws in date_dict.items %}#}
+{#                 <tr>#}
+{#                     <td>#}
+{#                        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">#}
+{#                          <img src="{% static 'images/' %}{{ draws.lottery.image_name }}" class="img_logo">#}
+{#                          <span class="text-warning mb-0">{{ draws.lottery.game }}</span>#}
+{#                          <h5 class="mb-0 text_lgray text-capitalize">{{ draws.lottery.location }}</h5>#}
+{#                        </div>#}
+{#                    </td>#}
+{#                 </tr>#}
+{#             {% endfor %}#}
+{#         {% endfor %}#}
+{#             	#}
+{#             {% endfor %}#}
+{#             #}
+{#                 {% ifchanged recent.date %}#}
+{#                    <tr><td style="border-top: 0px">{{ recent.date }}</td></tr>#}
+{#                 {% endifchanged %}#}
+{#                 {% ifchanged recent.lottery %}#}
+{#                     <tr>#}
+{#                         <td>#}
+{#                            <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">#}
+{#                              <img src="{% static 'images/' %}{{recent.lottery.image_name}}" class="img_logo">#}
+{#                              <span class="text-warning mb-0">{{ recent.lottery.game}}</span>#}
+{#                              <h5 class="mb-0 text_lgray text-capitalize">{{ recent.lottery.location}}</h5>#}
+{#                            </div>#}
+{#                        </td>#}
+{#                     </tr>#}
+{#                 {% endifchanged %}#}
+{#                 <tr>#}
+{#                     <td>#}
+{#                        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">#}
+{#                          <img src="{% static 'images/' %}{{recent.lottery.image_name}}" class="img_logo">#}
+{#                          <span class="text-warning mb-0">{{ recent.lottery.game}}</span>#}
+{#                          <h5 class="mb-0 text_lgray text-capitalize">{{ recent.lottery.location}}</h5>#}
+{#                        </div>#}
+{#                    </td>#}
+{#                    <td>{% include "display_balls_with_matching.html" %}</td>#}
+{#                    {% with recent as results %}#}
+{#                        {% with recent.lottery as lottery %}#}
+{#                            <td>{% include "display_actual_balls.html" %}</td>#}
+{#                        {%  endwith %}#}
+{#                    {%  endwith %}#}
+{#                 </tr>#}
+{#         {% endfor %}#}
+        </tbody>
+      </table>
+    </div>
+</div>

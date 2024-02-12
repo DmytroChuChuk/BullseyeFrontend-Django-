@@ -1,0 +1,98 @@
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static i18n socialaccount %}
+
+<!--{% block body_class %}lottery-favorites{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Update Profile{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+{% csrf_token %}
+  <div  style="position: relative; width: 100%">
+    {% get_providers as socialaccount_providers %}
+
+    <div class="row">
+      <div class="mt-2 mb-4 col-12 col-md-6 col-xl-4"></div>
+      <div class="mt-2 mb-4 col-12 col-md-6 col-xl-4 text-left">
+        <form method="POST" action="{% url 'account_update' request.user.pk %}" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <span class="text-white">Display Name</span>
+                {% with field=form.display_name %}{% include "account/form_field.html" %}{% endwith %}
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <span class="text-white">First Name</span>
+                    {% with field=form.first_name %}{% include "account/form_field.html" %}{% endwith %}
+                </div>
+                <div class="form-group col-md-6">
+                    <span class="text-white">Last Name</span>
+                    {% with field=form.last_name %}{% include "account/form_field.html" %}{% endwith %}
+                </div>
+            </div>
+    {#        <div class="form-group">#}
+    {#            <span class="text-white">Address</span>#}
+    {#            {% with field=form.address1 %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#        </div>#}
+    {#        <div class="form-group">#}
+    {#            <span class="text-white">Address Part 2</span>#}
+    {#            {% with field=form.address2 %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#        </div>#}
+    {#        <div class="form-row">#}
+    {#            <div class="form-group col-md-6">#}
+    {#                <span class="text-white">City</span>#}
+    {#                {% with field=form.city %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#            </div>#}
+    {#            <div class="form-group col-md-2">#}
+    {#                <span class="text-white">Zip Code</span>#}
+    {#                {% with field=form.zip_code %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#            </div>#}
+    {#            <div class="form-group col-md-4">#}
+    {#                <span class="text-white">Country</span>#}
+    {#                {% with field=form.country %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#            </div>#}
+    {#        </div>#}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <span class="text-white">Mobile Phone</span>
+                    {% with field=form.mobile_phone %}{% include "account/form_field.html" %}{% endwith %}
+                </div>
+                <div class="form-group col-md-6">
+                    <span class="text-white">Date of Birth</span>
+                    {% with field=form.date_of_birth %}{% include "account/form_field.html" %}{% endwith %}
+                </div>
+            </div>
+    {#        <div class="form-group">#}
+    {#            <span class="text-white">Additional Info</span>#}
+    {#            {% with field=form.additional_information %}{% include "account/form_field.html" %}{% endwith %}#}
+    {#        </div>#}
+            <div class="form-group">
+                <span class="text-white">Avatar</span>
+                <img src="{{ request.user.photo.url }}" class="user_avatar_img" alt="{% trans 'User photo' %}">
+                {% with field=form.photo %}{% include "account/form_field.html" %}{% endwith %}
+            </div>
+            <button type="submit" class="btn btn-outline-primary">{% trans "Update" %}</button>
+        </form>
+    <br>
+    {% if socialaccount_providers %}
+        <br>
+        <p class="text-white">{% blocktrans with site.name as site_name %}Connect your existing account to one of your social accounts:{% endblocktrans %}</p>
+        {% include "socialaccount/provider_list.html" with process="connect" %}
+    {% endif %}
+    <div class="text-center py-2">
+        <small>
+            <a href="{% url 'account_delete' request.user.pk %}" class="text-danger">{% trans "Delete your account" %}</a>
+        </small>
+    </div>
+  </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}profile.js"></script>
+{% endblock %}
+

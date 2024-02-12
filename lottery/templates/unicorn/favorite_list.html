@@ -1,0 +1,91 @@
+{% load static unicorn %}
+<div>
+    <div class="row" unicorn:key="checked-key">
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-1 col-xl-1">
+            <img class="img_add" src="{% static 'images/' %}plus.png" id="addFavBtn" unicorn:click="new_lottery_start()" unicorn:partial.key="checked-key">
+        </div>
+            <img class="img_add" src="{% static 'images/' %}green-right.png" style="margin-left: 20px;background-color:#0d1e25;display: {{ add_display_1 }};" id="addRight1">
+            <select class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_1 }};" id="countrySelect" unicorn:model="new_country" unicorn:change="new_lottery_country()" unicorn:partial.key="checked-key">
+                <option class="text-white font-size:30px" selected>Select a Country/Region</option>
+                {% for country in countries %}
+                    <option class="text-white text-capitalize font-size:30px" value="{{country.id}}">{{ country.name }}</option>
+                {% endfor %}
+            </select>
+            <img class="img_add" src="{% static 'images/' %}green-right.png" style="margin-left: 20px;background-color:#0d1e25;display: {{ add_display_2 }};" id="addRight2">
+            <select class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_2 }};" id="stateSelect"  unicorn:model="new_state" unicorn:change="new_lottery_state()" unicorn:partial.key="checked-key">
+                <option class="text-white font-size:30px" selected>Select a State/Territory</option>
+                {% for state in states %}
+                    <option class="text-white text-capitalize font-size:30px" value="{{state.id}}">{{ state.name }}</option>
+                {% endfor %}
+            </select>
+        <img class="img_add" src="{% static 'images/' %}green-right.png" style="margin-left: 20px;background-color:#0d1e25;display: {{ add_display_3 }};" id="addRight3">
+        <select class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_3 }};" id="gameSelect"  unicorn:model="new_game" unicorn:change="new_lottery_game()" unicorn:partial.key="checked-key">
+            <option class="text-white font-size:30px" selected>Select a Game</option>
+            {% for game in games_data %}
+                {%  if game.enable %}
+                    <option class="text-white text-capitalize font-size:30px" value="{{game.id}}">{{ game.game }}</option>
+                {%  else %}
+                    <option class="text-white text-capitalize font-size:30px" value="{{game.id}}" disabled>{{ game.game }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <button class="text-white text-capitalize font-size:30px" style="margin-left: 20px; height: 50px;background-color:#0d1e25;display: {{ add_display_1 }};"  unicorn:click="new_lottery_cancel()" unicorn:partial.key="checked-key">Cancel</button>
+        <button class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};"  unicorn:click="new_lottery_save()">Add to Favorites</button>
+    </div>
+    <div id="favorites-display" >
+        {% if favorites|length > 0 %}
+      <div class="row left_ row_buffer">
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+          <h5>LOTTERY</h5>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+          <h5>LASTEST DRAW</h5>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+          <h5>UNTIL NEXT DRAW</h5>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-2">
+          <h5>ESTIMATED JACKPOT</h5>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-1">
+          <h5>ACTIONS</h5>
+        </div>
+      </div>
+      {% for value in favorites %}
+      <div class="row left_row_buffer">
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+              <img src="{% static 'images/' %}{{ value.lottery.image_name}}" class="img_logo">
+              <span class="text-warning mb-0">{{ value.lottery.game}}</span>
+              <h5 class="mb-0 text_lgray text-capitalize">{{ value.lottery.location }}</h5>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+          <div class="amount_text row">
+            <span class="mb-0 text_lgray text-capitalize">{{ value.lottery.latest_results.date }}</span>
+          </div>
+            {% with value.lottery.latest_results as results %}
+                {%  with value.lottery as lottery %}
+                    {% include "display_balls.html" %}
+                {% endwith %}
+            {% endwith %}
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+          <span class="mb-0 text_lgray text-capitalize">{{ value.lottery.next_result_date }}</span>
+          <div id="timerID_{{value.id}}"></div>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-2">
+          <h3 class="mb-0 text-warning">{{value.lottery.jackpot}}</h3>
+        </div>
+        <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-1">
+    {#         unicorn:model="id"#}
+          <img src="{% static 'images/' %}trash.png" class="img_remove" style="max-height:25px;max-width:25px;height:auto;width:auto;" unicorn:click="remove_fav({{ value.id }})">
+        </div>
+      </div>
+  {% endfor %}
+  {%  else %}
+      <br/>
+      <img class="img_arrow" src="{% static 'images/' %}arrow.png">
+      <h2 class="text-center text-white">Welcome to bullseye Lotto.</h2>
+      <h3 class="text-center text-white">Start by adding a lottery you wish to follow with the button.</h3>
+  {%  endif %}
+    </div>
+</div>

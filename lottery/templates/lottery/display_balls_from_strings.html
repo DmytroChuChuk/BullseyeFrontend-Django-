@@ -1,0 +1,10 @@
+  <div>
+      {%  for ball in pic.balls %}
+          <span class="balls {{ current_lottery.0.lottery.ball_color }}">{{  ball }}</span>
+      {%  endfor %}
+      {% if pic.special_balls|length > 0 %}
+          {%  for ball in pic.special_balls %}
+              <span class="balls {{ current_lottery.0.lottery.special_ball_color }} sballs">{{  ball }}</span>
+          {%  endfor %}
+      {%  endif %}
+  </div>

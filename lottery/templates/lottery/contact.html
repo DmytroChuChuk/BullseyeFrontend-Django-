@@ -1,0 +1,21 @@
+{% extends "lottery/base_lottery.html" %}
+{% load static %}
+
+<!--{% block body_class %}recent{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Contact Us{% endblock header-name %}
+
+{% block lottery-body %}
+    <div class="text-white" style="width: 100%;">
+    </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}contact.js"></script>
+{% endblock %}

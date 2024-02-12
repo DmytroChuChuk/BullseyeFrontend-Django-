@@ -1,0 +1,164 @@
+
+{% load static unicorn %}
+<div class="" style="position: relative; width: 100%">
+  <style>
+    [unicorn\:error\:invalid] {
+      border: 1px solid red !important;
+    }
+    [unicorn\:error\:required] {
+      border: 1px solid red !important;
+    }
+  </style>
+
+    <div  class="text-center" style="margin: auto;">
+        <span class="text-white">
+            <select class="text-white text-capitalize font-size:30px" style="background-color:#0d1e25;" id="lotterySelect" unicorn:model="target_lottery" unicorn:change="lottery_select()">
+                {% for favorite in lotteries %}
+                    <option value="{{favorite.lottery.id}}">{{ favorite.lottery.game }} ({{ favorite.lottery.location }})</option>
+                {% endfor %}
+            </select>
+        </span>
+    </div>
+    <div class="main_body_wrapper  px-4">
+        <div>
+            <div class="row left_row_buffer">
+              <div class="col-12 col-md-6">
+                <div class="p-3 stats_inner d-flex align-items-center">
+                  <img src="{% static 'images/' %}bonus-promo.png" class="img-fluid me-4" alt="balance">
+                      <div class="amount_text">
+                          <span class="mb-0 text_lgray text-capitalize" id="last_draw_date">LAST DRAW</span>
+                            <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.latest_results.date }}</span>
+                              {%  with current_lottery.0.lottery.latest_results as results %}
+                                {% include "display_balls.html" %}
+                              {%  endwith %}
+                      </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="p-3 stats_inner d-flex align-items-center">
+                    <img src="{% static 'images/' %}stats.png" class="img-fluid me-4" alt="balance">
+                    <div class="amount_text">
+                        <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.next_result_date }}</span>
+                        <h5 class="text-warning mb-0" id="draw_countdown"></h5>
+                  </div>
+                </div>
+              </div>
+                  {% if current_lottery.0.lottery.jackpot|length > 0 %}
+                      <div class="row" id="jackpot_div">
+                        <div class="p-3 stats_inner d-flex align-items-center">
+                          <img src="{% static 'images/' %}unbeat.png" class="img-fluid me-4" alt="balance">
+                          <div class="amount_text">
+                            <span class="mb-0 text_lgray text-capitalize">JACKPOT</span>
+                            <h5 class="text-warning mb-0" id="jackpot_text">
+                                {{ current_lottery.0.lottery.jackpot }}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                  {% endif %}
+              </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="text-white border: 50px">
+            <div class="row text-center">
+                <div class="col-12 col-md-12 text-center">
+                    <h2>Make Your Selections:</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-3 text-right">
+                    <label>Draw Date:</label><br>
+                </div>
+                <div class="col-12 col-md-3 text-left">
+                    <select id="draws" unicorn:model="target_date_str"  unicorn:partial.key="picks-key">
+                        {%   for db_str, clean_str in future_date_hash.items  %}
+                            <option id="{{ db_str }}" value="{{ db_str }}">{{ clean_str }}</option>
+                        {%  endfor %}
+                    </select>
+                </div>
+                <div class="col-12 col-md-3 text-right">
+                    <label>Number of Picks:</label><br>
+                </div>
+                <div class="col-12 col-md-3 text-left">
+                  <input type="number" id="picks" name="picks"  unicorn:partial.key="picks-key" unicorn:model="target_count" min="1" max="100"><br><br>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-12 col-md-12">
+                     <button class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};" unicorn:partial.key="picks-key"  unicorn:click="build_picks()">Generate</button>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-12 col-md-1"></div>
+            <div class="col-12 col-md-3 text-white"   >
+                 <button  class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};"  unicorn:click="select_all()" unicorn:partial.key="picks-key">Select All</button>
+            </div>
+            <div class="col-12 col-md-3 text-white"   >
+                 <button  class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};"  unicorn:click="select_none()" unicorn:partial.key="picks-key">Deselect All</button>
+            </div>
+            <div class="col-12 col-md-3 text-white"   >
+                 <button  class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};"  unicorn:click="select_save()" unicorn:partial.key="picks-key">Save Selected</button>
+            </div>
+        </div>
+        <br/>
+
+        <div class="row" >
+            <div class="col-12 col-md-12 text-white"   unicorn:key="picks-key">
+            <span class="text-white">{{ dummy }}</span>
+                {%   for index, pic in future_picks.items  %}
+                    <div class="row">
+                        <div class="col-12 col-md-2"></div>
+                        <div class="col-12 col-md-1">
+                            <input type="checkbox" id="pic_check_{{index}}"  unicorn:model="check_buttons.{{ index }}" unicorn:change="update_check()" unicorn:partial.key="picks-key">
+                        </div>
+                        <div class="col-12 col-md-7">
+                            {% include "display_balls_from_strings.html" %}
+                        </div>
+                        <div class="col-12 col-md-2"></div>
+                    </div>
+                {%  endfor %}
+            </div>
+        </div>
+{#        <div class="row text-white border: 50px">#}
+{#            <div class="col-12 col-md-4">#}
+{#                <div class="row">#}
+{#                    <div class="col-12 col-md-12 text-center">#}
+{#                        <h2>MAKE YOUR SELECTIONS:</h2><br>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col-12 col-md-6 text-right">#}
+{#                        <label>Draw Date:</label><br>#}
+{#                    </div>#}
+{#                    <div class="col-12 col-md-6 text-left">#}
+{#                        <select id="draws" unicorn:model="target_date"   unicorn:partial.key="picks-key">#}
+{#                            {% for pick in future_dates %}#}
+{#                                <option id="{{ pick }}">{{ pick }}</option>#}
+{#                            {%  endfor %}#}
+{#                        </select>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col-12 col-md-6 text-right">#}
+{#                        <label>Number of Picks:</label><br>#}
+{#                    </div>#}
+{#                    <div class="col-12 col-md-6 text-left">#}
+{#                      <input type="number" id="picks" name="picks"  unicorn:partial.key="picks-key" unicorn:model="target_count" min="1" max="100"><br><br>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row text-center">#}
+{#                    <div class="col-12 col-md-12">#}
+{#                         <button class="text-white text-capitalize font-size:30px" style="margin-left: 20px;height: 50px;background-color:#0d1e25;display: {{ add_display_4 }};" unicorn:partial.key="picks-key"  unicorn:click="build_picks()">Generate</button>#}
+{#                         <button unicorn:click="build_picks()" unicorn:partial.key="picks-key" >Generate</button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+{#        </div>#}
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% extends "lottery/base_lottery.html" %}
+{% load static unicorn %}
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+    {% csrf_token %}
+    <div class="" style="position: relative; width: 100%">
+        <div class="main_body_wrapper  px-4">
+            {% unicorn 'single_header' %}
+            {% block lottery-body-single %}{% endblock %}
+        </div>
+    </div>
+{#  <div class="" style="position: relative; width: 100%">#}
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}base_lottery_single.js"></script>
+{% endblock %}
+
+
+
+
+
+

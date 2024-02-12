@@ -1,0 +1,97 @@
+{% extends "lottery/lottery_base.html" %}
+{% load static %}
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+{% block lottery-body %}
+  <div class="my_container my-container active-cont"  style="top: 100px;">
+    <div class="my_div" id="lottoSelectDiv" style="display: flex; margin-top:auto; margin-bottom:auto;">
+        <select class="text-white text-capitalize font-size:30px" style="background-color:#0d1e25;" id="lottoSelect">
+            {%  for key, lottery in results.results.items %}
+                <option value="{{ key }}">{{ lottery.name }} ({{ lottery.location }})</option>
+            {%  endfor %}
+        </select>
+    </div>
+    <br/>
+    <div class="main_body_wrapper  px-4">
+      <div>
+{#          class="px-4 my-3 py-4">#}
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="p-3 stats_inner d-flex align-items-center">
+              <img src="{% static 'images/' %}bonus-promo.png" class="img-fluid me-4" alt="balance">
+                  <div class="amount_text">
+                      <span class="mb-0 text_lgray text-capitalize" id="last_draw_date">LAST DRAW</span>
+                      {% for key,value in results.results.items %}
+                          {% if key == results.target_id %}
+                            <span class="mb-0 text_lgray text-capitalize">{{ value.results_date }}</span>
+                            {% include "display_balls.html" %}
+                          {% endif %}
+                      {% endfor %}
+                  </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="row">
+              <div class="p-3 stats_inner d-flex align-items-center">
+                <img src="{% static 'images/' %}stats.png" class="img-fluid me-4" alt="balance">
+                <div class="amount_text">
+                <span class="mb-0 text_lgray text-capitalize">Time Til Next Draw</span>
+                <h5 class="text-warning mb-0" id="draw_countdown"></h5>
+              </div>
+            </div>
+          </div>
+          {% for key,value in results.results.items %}
+              {% if key == results.target_id %}
+                  {% if value.jackpot|length > 0 %}
+                      <div class="row" id="jackpot_div">
+                        <div class="p-3 stats_inner d-flex align-items-center">
+                          <img src="{% static 'images/' %}unbeat.png" class="img-fluid me-4" alt="balance">
+                          <div class="amount_text">
+                            <span class="mb-0 text_lgray text-capitalize">JACKPOT</span>
+                            <h5 class="text-warning mb-0" id="jackpot_text">
+                                {{ value.jackpot }}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                  {% endif %}
+              {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {% block lottery-body-single %}{% endblock %}
+  </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}recent.js"></script>
+<script>
+    $('#lottoSelect').on('change', function () {
+        // reload section of page
+        // update cookie
+        updateCookieData("target_lottery", x);
+        alert("UPDATED")
+    //
+    //     var x = document.getElementById("lottoSelect").value;
+    //     target_lottery_id = x;
+    //     getLotteryMetadata();
+    //     setJackpotDisplay();
+    //     setCountdownDisplay();
+    //     refreshLastestResults();
+    //     call_for_lottery_history(lottery_select_post_call, null);
+    });
+
+</script>
+{% endblock %}
+
+
+
+
+
+

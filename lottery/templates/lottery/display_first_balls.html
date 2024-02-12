@@ -1,0 +1,13 @@
+  <div>
+      {%  for ball in value.balls_as_list %}
+          <span class="balls {{ value.lottery.ball_color }}">{{  ball }}</span>
+      {%  endfor %}
+      {% if value.special_balls_as_list|length > 0 %}
+          {%  for ball in value.special_balls_as_list %}
+              <span class="balls {{ value.lottery.special_ball_color }} sballs">{{  ball }}</span>
+          {%  endfor %}
+      {%  endif %}
+      {% if value.balls_as_list|length > 0 and value.multiplier|length > 0 %}
+          <span class="multiplier">{{ value.multiplier }}</span>
+      {%  endif %}
+  </div>

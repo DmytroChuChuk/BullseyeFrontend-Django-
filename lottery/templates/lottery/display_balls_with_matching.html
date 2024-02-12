@@ -1,0 +1,18 @@
+{% load util %}
+
+<div>
+  {%  for ball in recent.balls_as_list %}
+      {% if ball.strip in recent.actual_balls_as_list %}
+        <span class="balls {{ recent.lottery.ball_color }}">{{  ball }}</span>
+      {% else %}
+        <span class="balls {{ recent.lottery.ball_color }} oballs">{{  ball }}</span>
+      {% endif %}
+  {%  endfor %}
+  {%  for ball in recent.special_balls_as_list %}
+      {% if ball.strip in recent.actual_special_balls_as_list %}
+        <span class="balls {{ recent.lottery.special_ball_color }} sballs">{{  ball }}</span>
+      {% else %}
+        <span class="balls {{ recent.lottery.special_ball_color }} sballs oballs">{{  ball }}</span>
+      {% endif %}
+  {%  endfor %}
+</div>

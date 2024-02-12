@@ -1,0 +1,1 @@
+common_init("side_custom_picks", true,false);

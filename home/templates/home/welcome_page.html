@@ -1,0 +1,411 @@
+{% load static %}
+<html class="h-full scroll-smooth bg-white antialiased [font-feature-settings:'ss01'] js-focus-visible" lang="en" data-js-focus-visible="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bullseye Lottery Software</title>
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        orange: '#EE7F08',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html,
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+</head>
+
+<body class="flex h-full flex-col">
+
+    <!-- HEADER + NAV -->
+    <div class="pb-20 md:pb-36 bg-cover bg-no-repeat bg-left md:bg-center" 
+        style="background-image:url('static/home/images/background.png');">
+        <div class="bg-transparent z-10 ">
+            <div class="mx-auto container pt-6">
+                <div class="min-[548px]:flex h-24 justify-between">
+                    <div class="flex items-center relative max-[548px]:mt-6">
+                        <div id="background" class="max-[548px]:h-[70px] max-[548px]:w-[200px] w-[260px] h-[110px] clip"></div>
+                        <!-- <div id="clipa" class="max-[548px]:h-[70px] max-[548px]:w-[200px] w-[240px] h-[90px] clip"></div> -->
+                        <!-- <img class="block h-20 w-auto" src="static/images/logo.png"> -->
+                    </div>
+                    <div class="flex items-center justify-end gap-x-3 max-[548px]:mt-7">
+                        <!-- <div class="flex-shrink-0"> -->
+                            
+                                <a href="#" class="btn btn-white btn-animate">Sign In</a>
+                                <a href="#pricing-plans" class="btn btn-white btn-animate">Join Now</a>
+                            <!-- <button type="button" class="relative inline-flex items-center rounded-full bg-white px-4 py-2 text-md font-bold text-orange ">
+                                <span>Sign In</span>
+                            </button> -->
+    
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto mt-12 md:mt-36 lg:mt-36 flex">
+            <div class="w-full lg:w-1/2 py-4 px-8 text-center md:text-left">
+                <div class="my-1">
+                    <span class="text-orange font-bold text-5xl md:text-7xl animate-charcter">Play Smarter </span>
+                </div>
+                <div class="my-1">
+                    <span class="text-5xl md:text-7xl font-bold text-orange uppercase animate-charcter">Win More!</span>
+                </div>
+                <!-- <div class="my-1">
+                    <span style="font-size: 3rem;" class="text-white font-bold leading-tight">BULLSEYE LOTTERY SOFTWARE</span>
+                </div> -->
+                <div class="my-2">
+
+                    <!-- <div class="page page-thunder-to-text">
+                        <input id="input" type="text" maxlength="24" placeholder="iwe">
+                        <canvas id="canvas"></canvas>
+                    </div> -->
+                    <span class="mt-4 font-bold text-white text-2xl md:text-3xl">Lottery Analysis and Prediction made easy</span>
+                </div>
+                <div class="my-5">
+                    <button class="cssbuttons-io-button mx-auto text-3xl">
+                        Get started
+                        <div class="icon">
+                          <svg
+                            height="24"
+                            width="24"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                              d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                              fill="currentColor"
+                            ></path>
+                          </svg>
+                        </div>
+                      </button>
+                    <!-- <a href="#pricing-plans" class="rounded-xl bg-orange px-5 py-3 text-lg font-bold leading-7 text-white shadow-sm">Get started</a> -->
+                </div>
+            </div>
+            {% comment %} <div class="max-w-lg hidden md:block lg:w-1/2 py-4 px-8">
+                <img src="static/home/images/favicon.png" alt="">
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+
+    <!-- FEATURES SECTION -->
+    <div class="bg-gray-900 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:text-center mb-8">
+                <h2 class="text-center text-xl md:text-2xl font-semibold leading-8 tracking-tight text-orange">Play Smarter</h2>
+                <p class="text-center mt-2 text-4xl font-bold tracking-tight text-white sm:text-6xl">Bullseye Features</p>
+            </div>
+        </div>
+        <div class="cards grid min-[768px]:grid-cols-2 grid-cols-1 mx-auto w-4/5 gap-y-6 gap-x-6">
+            <div class="card card--1">
+                <div class="card__info">
+                    <h3 class="card__title text-2xl">Access to Historical Data</h3>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        316 pre-loaded Lottery Games-Power Ball, Mega Millions, Lucky for Life, Lotto America, Cash For Life, Pick 3, Pick 4,Pick 5, Pick 6 and Pick 7 are all included.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Support for games in all US and Canada Lottery Game. More Countries will be added soon!
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Historical Data for all US and Canada Drawings
+                    </dt>
+                  </div>
+            </div>
+            <div class="card card--1">
+                <div class="card__info">
+                    <h3 class="card__title text-2xl">Updated In Real Time</h3>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Track your Winnings!
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Lotteries Updated Daily.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        No software to download. Mobile Friendly
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7  mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        14 Day Money Back Guarantee. Charting and analysis suite. Easy to spot trends and hot numbers!
+                    </dt>
+                  </div>
+            </div>
+            <div class="card card--1">
+                <div class="card__info">
+                    <h3 class="card__title text-2xl">Simple Yet Powerful</h3>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Check your tickets for winning numbers.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Easy to use features.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Powerful tools to help you pick winning Combinations!
+                    </dt>
+                  </div>
+            </div>
+            <div class="card card--1">
+                <div class="card__info">
+                    <h3 class="card__title text-2xl">Quick & Easy</h3>
+                    <dt class="flex items-start gap-x-3  leading-7  mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Unlimited Bullseye Picks! Bullseye Pick” feature and Bullseye will automatically generate picks basedon a history of past drawings.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7  mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        Search past drawings for winning number combinations.
+                    </dt>
+                    <dt class="flex items-start gap-x-3  leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        No software to download. Mobile Friendly
+                    </dt>
+                    <dt class="flex items-start gap-x-3 leading-7 mb-2">
+                        <svg class="h-5 w-5 flex-none text-indigo-400" viewBox="0 0 36 36" fill="#EE7F08" aria-hidden="true">
+                            <path d="M19,18.85a1,1,0,0,1-1.41,0l-3-3A4,4,0,0,0,13.91,18,4.09,4.09,0,1,0,18,13.91a4,4,0,0,0-2,.55l3,3A1,1,0,0,1,19,18.85Z" class="clr-i-solid clr-i-solid-path-1"></path>
+                            <path d="M18,2a15.92,15.92,0,0,0-4.25.59l1.6,3.89A11.89,11.89,0,1,1,6.49,15.3L2.61,13.68A16,16,0,1,0,18,2Z" class="clr-i-solid clr-i-solid-path-2"></path>
+                            <path d="M8,15.94A10.17,10.17,0,1,0,16,8l1.69,4.11.31,0A5.88,5.88,0,1,1,12.12,18c0-.12,0-.23,0-.35Z" class="clr-i-solid clr-i-solid-path-3"></path>
+                            <path d="M8.2,13.34a.5.5,0,0,0,.35.15H12.2l2.35,2.35A4.09,4.09,0,0,1,16,14.46L13.53,12V8.51a.5.5,0,0,0-.15-.35L7.79,2.57a.5.5,0,0,0-.85.35v4H3a.5.5,0,0,0-.35.85Z" class="clr-i-solid clr-i-solid-path-4"></path>
+                        </svg>
+                        14 Day Money Back Guarantee.
+                    </dt>
+                  </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div class="bg-gray-800">
+        <div class="container mx-auto px-6 pt-20 pb-8">
+            <p class="text-center mt-2 mb-8 text-4xl font-bold tracking-tight text-white sm:text-6xl">How It Works</p>
+            <div class="flex items-center justify-center mb-16">
+                <div class="w-full max-w-4xl">
+                    <div class="relative">
+                        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" 
+                                    class="rounded-lg border-2 border-orange">
+                            <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                                src="https://www.youtube.com/embed/v97HCg7GxZ0?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg border-2 border-orange"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-gray-800">
+        <div class="mx-auto max-w-7xl sm:px-4 pb-24 px-6 lg:px-8">
+            <div class="relative isolate overflow-hidden px-2 py-2 text-center sm:rounded-3xl sm:px-16">
+                <h2 class="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-white">Bullseye Lottery Analysis & Prediction</h2>
+                <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">Keeping you in the game! For the cost of a few lottery tickets a month you get historical data, charts graphs and tools to see trends that give you the edge on winning combinations. Using our Bullseye Picks, we do all of the analysis for you.</p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <button type="button" class="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:ring-[#FF9119]/50 font-medium rounded-lg text-1xl px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-2">
+                        Get Started
+                        </button>
+                    <!-- <a href="#" class="text-base font-semibold leading-7 text-white">Learn more <span aria-hidden="true">→</span></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--- PRICING --->
+    <div class="bg-gray-900 py-10 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-4xl text-center py-10" id="pricing-plans">
+                <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">Pricing Plans</p>
+            </div>
+            <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-300">Join monthly or annually, cancel anytime. Log in to save your favorite games, create picks with our predictive algorithm, and track your winnings. Get started today and increase your chances of winning big!</p>
+            <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+
+                <div class="rounded-3xl p-8 xl:p-10 ring-2  ring-orange">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <h3 id="tier-enterprise" class="text-lg font-semibold leading-8 text-white">Monthly Subscription</h3>
+                    </div>
+                    <p class="mt-4 text-sm leading-6 text-gray-300">Month to month pricing. Cancel anytime.</p>
+                    <p class="mt-6 flex items-baseline gap-x-1">
+                        <!-- Price, update based on frequency toggle state -->
+                        <span class="text-4xl font-bold tracking-tight text-white">$2.99</span>
+                        <!-- Payment frequency, update based on frequency toggle state -->
+                        <span class="text-sm font-semibold leading-6 text-gray-300">/month</span>
+                    </p>
+                    <a href="https://buy.stripe.com/test_4gwaFC95waY36zefYY" aria-describedby="" class="mt-6 block rounded-md py-2 px-3 text-center text-sm leading-6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange text-white shadow-sm hover:bg-orange/80 focus-visible:bg-orange/80">Get Plan</a>
+                </div>
+
+                <div class="rounded-3xl p-8 xl:p-10 bg-white/5 ring-2 ring-orange">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <h3 id="" class="text-lg font-semibold leading-8 text-white">Annual Subscription</h3>
+
+                        <p class="rounded-full bg-orange py-1 px-2.5 text-xs font-semibold leading-5 text-white whitespace-nowrap">Most popular</p>
+                    </div>
+                    <p class="mt-4 text-sm leading-6 text-gray-300">Get 2 months free when you subscribe annually!</p>
+                    <p class="mt-6 flex items-baseline gap-x-1">
+                        <!-- Price, update based on frequency toggle state -->
+                        <span class="text-4xl font-bold tracking-tight text-white">$29.99</span>
+                        <!-- Payment frequency, update based on frequency toggle state -->
+                        <span class="text-sm font-semibold leading-6 text-gray-300">/year</span>
+                    </p>
+                    <a href="https://buy.stripe.com/test_4gwaFC95waY36zefYY" aria-describedby="" class="mt-6 block rounded-md py-2 px-3 text-center text-sm leading-6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange text-white shadow-sm hover:bg-orange/80 focus-visible:bg-orange/80">Get Plan</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <img class="h-20" src="static/images/logo.png" alt="Company name">
+                <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div>
+                            <h3 class="text-sm font-semibold leading-6 text-white">Quick Links</h3>
+                            <ul role="list" class="mt-6 space-y-4">
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About Us</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Why User</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-10 md:mt-0">
+                            <h3 class="text-sm font-semibold leading-6 text-white">Help Links</h3>
+                            <ul role="list" class="mt-6 space-y-4">
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Terms & Conditions</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Privacy Policy</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About Us</a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Support</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="md:grid md:grid-cols-2 md:gap-8">
+                        <div class="">
+                            <h3 class="text-sm font-semibold leading-6 text-white">Contact Us</h3>
+                            <ul role="list" class="mt-6 space-y-4">
+                                <li>
+                                    <a href="mailto:info@bullseye.com" class="text-sm leading-6 text-gray-300 hover:text-white">info@bullseye.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="static/js/effect.js"></script>
+</body>
+</html>

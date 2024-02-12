@@ -1,0 +1,24 @@
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static %}
+
+<!--{% block body_class %}lottery-favorites{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Account Profile{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+{% csrf_token %}
+  <div  style="position: relative; width: 100%">
+      {% include "userauth/account/profile.html" %}
+  </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}profile.js"></script>
+{% endblock %}
+

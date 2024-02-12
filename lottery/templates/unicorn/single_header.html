@@ -1,0 +1,51 @@
+{% load static unicorn %}
+
+<div>
+    <div class="row left_row_buffer">
+      <div class="col-12 col-md-6">
+        <div class="p-3 stats_inner d-flex align-items-center">
+          <img src="{% static 'images/' %}bonus-promo.png" class="img-fluid me-4" alt="balance">
+              <div class="amount_text">
+                  <span class="mb-0 text_lgray text-capitalize" id="last_draw_date">LAST DRAW</span>
+                  {% for key,value in results.results.items %}
+                      {% if key == results.target_id %}
+                        <span class="mb-0 text_lgray text-capitalize">{{ lottery.0.latest_results.date }}</span>
+                          {%  with lottery.0.latest_results as results %}
+                            {% include "display_balls.html" %}
+                          {%  endwith %}
+                      {% endif %}
+                  {% endfor %}
+              </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="row">
+          <div class="p-3 stats_inner d-flex align-items-center">
+            <img src="{% static 'images/' %}stats.png" class="img-fluid me-4" alt="balance">
+            <div class="amount_text">
+            <span class="mb-0 text_lgray text-capitalize">{{ lottery.0.next_result_date }}</span>
+            <h5 class="text-warning mb-0" id="draw_countdown"></h5>
+          </div>
+        </div>
+      </div>
+      {% for key,value in results.results.items %}
+          {% if key == results.target_id %}
+              {% if value.jackpot|length > 0 %}
+                  <div class="row" id="jackpot_div">
+                    <div class="p-3 stats_inner d-flex align-items-center">
+                      <img src="{% static 'images/' %}unbeat.png" class="img-fluid me-4" alt="balance">
+                      <div class="amount_text">
+                        <span class="mb-0 text_lgray text-capitalize">JACKPOT</span>
+                        <h5 class="text-warning mb-0" id="jackpot_text">
+                            {{ lottery.0.jackpot }}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+              {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+</div>
+

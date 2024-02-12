@@ -1,0 +1,1 @@
+common_init("side_manual_picks", true,false);

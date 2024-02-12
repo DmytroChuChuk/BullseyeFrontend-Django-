@@ -1,0 +1,49 @@
+{#{% extends "lottery/base_lottery_single.html" %}#}
+{#{% load unicorn static %}#}
+{##}
+{#<!--{% block body_class %}lottery history{% endblock %}-->#}
+{##}
+{#{% block lottery-nav-bar %}#}
+{#{% endblock lottery-nav-bar %}#}
+{##}
+{#{% block header-name %}Draw History for{% endblock header-name %}#}
+{#{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}#}
+{#{% block lottery-body-single %}#}
+{#    {% csrf_token %}#}
+{#    {{ results.next_time }}#}
+{#    {% unicorn 'draw_history_list' %}#}
+{#{% endblock lottery-body-single %}#}
+{#{% block lottery-footer %}#}
+{#{% endblock lottery-footer %}#}
+{##}
+{#{% block extra_js %}#}
+{#<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>#}
+{#<script type="text/javascript" src="{% static 'scripts/' %}lottery_history.js"></script>#}
+{#{% endblock %}#}
+{##}
+{#{% block body_load %}setCountdownDisplay('{{results.next_time}}'){% endblock %}#}
+
+
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static %}
+
+<!--{% block body_class %}lottery history{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Draw History{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+    {% csrf_token %}
+    {% unicorn 'draw_history_list' %}
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}lottery_history.js"></script>
+{% endblock %}
+
+{#{% block body_load %}setCountdownDisplay('{{results.next_time}}'){% endblock %}#}

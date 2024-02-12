@@ -1,0 +1,76 @@
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static %}
+
+<!--{% block body_class %}graphs{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Charts/Graphs{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+    {% csrf_token %}
+    {% unicorn 'graph_list' %}
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}graph.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}charts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{#<script src="https://code.highcharts.com/highcharts.js"></script>#}
+{#<script src="https://code.highcharts.com/modules/exporting.js"></script>#}
+{#<script src="https://code.highcharts.com/modules/export-data.js"></script>#}
+{#<script src="https://code.highcharts.com/modules/accessibility.js"></script>#}
+
+<script>
+ $('#graphType').on('change', function () {
+     console.log("In update chart type");
+     change_graph();
+ });
+ $('#displayType').on('change', function () {
+     console.log("In update display type");
+     change_graph();
+ });
+ $('#ballType').on('change', function () {
+     console.log("In update ball type");
+     change_graph();
+ });
+ $('#myRange').on('change', function () {
+     console.log("In update chart range");
+     document.getElementById("rangeValue").innerText = "Draws: " + $('#myRange').val();
+     populate_chart();
+ });
+
+ function change_graph() {
+     console.log("CHANGE GRAPH");
+ }
+
+ function populate_chart() {
+     console.log("POPULATE GRAPH");
+ }
+
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+  </script>
+{% endblock %}

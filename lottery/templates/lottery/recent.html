@@ -1,0 +1,60 @@
+{% extends "lottery/base_lottery.html" %}
+{% load static %}
+
+<!--{% block body_class %}recent{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Recent Picks{% endblock header-name %}
+
+{% block lottery-body %}
+    <div style="width: 100%; ">
+        <div class="payment_table border border-secondary">
+          <table id="data_table" class="table mb-0 text-white align-middle" style="width: 100%">
+            <thead>
+              <tr>
+                <th scope="col"><span class="text-capitalize">Lottery</span></th>
+                <th scope="col"><span class="text-capitalize" id="pics">My Pics</span></th>
+                <th scope="col"><span class="text-capitalize" id="ball1_text">Draw</span></th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for date,lotteries in results.history.items %}
+                 <tr><td style="border-top: 0px">{{ date }}</td></tr>
+                 {%  for lottery, draws in lotteries.items %}
+                     <tr>
+                         <td>
+                            <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-3">
+                              <img src="{% static 'images/' %}{{draws.0.lottery.image_name}}" class="img_logo">
+                              <span class="text-warning mb-0">{{ draws.0.lottery.game}}</span>
+                              <h5 class="mb-0 text_lgray text-capitalize">{{ draws.0.lottery.location}}</h5>
+                            </div>
+                        </td>
+                        <td>
+                            {% for recent in draws %}
+                                {% include "display_balls_with_matching.html" %}
+                            {%  endfor %}
+                        </td>
+                        <td>
+                            {% with draws.0 as results %}
+                                {% include "display_actual_balls.html" %}
+                            {%  endwith %}
+                        </td>
+                     </tr>
+                 {%  endfor %}
+             {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}recent.js"></script>
+{% endblock %}
+
+

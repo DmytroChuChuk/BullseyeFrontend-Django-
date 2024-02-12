@@ -1,0 +1,174 @@
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static i18n %}
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}Account Profile{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+{% csrf_token %}
+    <div class="text-white"  style="position: relative; width: 100%">
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Email</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.email }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Display Name</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.display_name }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">First Name</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.first_name|default:'' }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Last Name</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.last_name|default:'' }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Mobile Phone</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.mobile_phone|default:'' }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Date of Birth</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                {{ request.user.date_of_birth|default:'' }}
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-right">Avatar</div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3 text-left">
+                <img src="{{ request.user.photo.url }}" class="user_avatar_img" alt="{% trans 'User photo' %}">
+            </div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-3"></div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-2"></div>
+            <div class="mt-2 mb-4 col-12 col-md-6 col-xl-6 text-center">
+                <a href="{% url 'account_update' request.user.pk %}">{% trans "Update your account" %}</a>
+            </div>
+        </div>
+    </div>
+
+{#  <div  style="position: relative; width: 100%">0#}
+{#      <div style="padding: 50px; margin: auto">#}
+{#        <div>#}
+{#            <div  style="position: relative; width: 100%">#}
+{#              <div class="text-white" style="position: relative; width: 100%;">#}
+{#                <div class="row"  style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "E-mail" %}:</small><br>#}
+{#                        {{ request.user.email }}#}
+{#                    </div>#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Display name" %}:</small><br>#}
+{#                        {{ request.user.display_name }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "First name" %}:</small><br>#}
+{#                        {{ request.user.first_name|default:'' }}#}
+{#                    </div>#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Last name" %}:</small><br>#}
+{#                        {{ request.user.last_name|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Address1" %}:</small><br>#}
+{#                        {{ request.user.address1|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Address2" %}:</small><br>#}
+{#                        {{ request.user.address2|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "City" %}:</small><br>#}
+{#                        {{ request.user.city|default:'' }}#}
+{#                    </div>#}
+{#                    <div class="col-2 border">#}
+{#                        <small>{% trans "Postal code" %}:</small><br>#}
+{#                        {{ request.user.zip_code|default:'' }}#}
+{#                    </div>#}
+{#                    <div class="col-4 border">#}
+{#                        <small>{% trans "Country" %}:</small><br>#}
+{#                        {{ request.user.country|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Mobile phone" %}:</small><br>#}
+{#                        {{ request.user.mobile_phone|default:'' }}#}
+{#                    </div>#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Date of birth" %}:</small><br>#}
+{#                        {{ request.user.date_of_birth|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <small>{% trans "Additional information" %}:</small><br>#}
+{#                        {{ request.user.additional_information|default:'' }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row" style="width: 100%;">#}
+{#                    <div class="col border">#}
+{#                        <div class="row">#}
+{#                            <div class="col">#}
+{#                                <small>{% trans "Photo" %}:</small><br>#}
+{#                            </div>#}
+{#                            <div class="col">#}
+{#                                <img src="{{ request.user.photo.url }}" class="user_avatar_img" alt="{% trans 'User photo' %}">#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div>#}
+{#            <a href="{% url 'account_update' request.user.pk %}">{% trans "Update your account" %}</a>#}
+{#        </div>#}
+{#      </div>#}
+{#  </div>#}
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}profile.js"></script>
+{% endblock %}
+
+
+
+

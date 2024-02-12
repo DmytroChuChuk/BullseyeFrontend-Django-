@@ -1,0 +1,23 @@
+{% extends 'account/base_card.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block card-header %}
+    <h3 class="text-white">{% trans "Sign Out" %}</h3>
+{% endblock %}
+
+{% block card-body %}
+
+    <p class="text-white">{% trans "Are you sure you want to sign out?" %}</p>
+
+    <form method="POST" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-primary btn-sm text-white">{% trans "Sign Out" %}</button>
+    </form>
+
+    <br><p class="text-white">{% trans "No, stay logged in" %}</p>
+    <a href="javascript:history.go(-1);" class="btn btn-outline-primary text-white">{% trans "Return to site" %}</a>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% load unicorn static %}
+
+{% block title %}
+{%  endblock %}
+
+{% block content %}
+
+<div style="width: 100%">
+    <div class="row" style="width: 100%; width: 100vw;">
+        <div class="lottery-page" style="width: 100%">
+            <nav class="navbar top-navbar navbar-expand-lg navbar-light px-3 px-md-5 border-secondary navbar_height" style="width: 100%; top: 0; position: fixed;">
+                <div class="d-flex w-100">
+                    <div class="misc_logo  border-secondary p-3">
+                        <img src="{% static 'images/' %}logo-re.png" alt="logo">
+                    </div>
+                    <div class="my_div">
+                        <h3 class="text-white mt-3 mb-3 text-capitalize text-center" style="background-color:#0d1e25;" id="headerText">DEFAULT</h3>
+                    </div>
+{#                    <div class="my_div" id="lottoSelectDiv" style="display: flex; margin-top:auto; margin-bottom:auto;">#}
+{#                        <select class="text-white text-capitalize font-size:30px" style="background-color:#0d1e25;" id="lottoSelect">#}
+{#                            {%  for key, lottery in results.items %}#}
+{#                                <option value="{{ key }}"><h2>{{ lottery.lottery_image }}{{ lottery.lottery_name }} ({{ lottery.lottery_location }})</h2></option>#}
+{#                            {%  endfor %}#}
+{#                        </select>#}
+{#                    </div>#}
+                    <div class="dropdown ms-5" style="display: flex; margin-top:auto; margin-bottom:auto;">
+                        <span class="user_online"></span>
+                        <a class="dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{% static 'images/' %}d-sm.jpg" class="img-fluid user_avatar_img" alt="user-avatar">
+                        </a>
+
+                        <ul class="dropdown-menu user_dropdownmenu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="index.php">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a class="btn ms-auto border-0 d-block d-md-none" id="menu-btn">
+                    <i class="bx bx-menu"></i>
+                </a>
+            </nav>
+            {% block lottery-nav-bar %}
+            {% endblock %}
+        </div>
+        <div>
+            <br>
+        </div>
+        <div class="row lottery-page-body" style="width: 100%; top: 100px; position: fixed;">
+             <!-- Side-Nav -->
+            <div class="side-navbar active-nav border-end border-secondary" id="sidebar">
+<!--      <div class="misc_logo border-bottom border-secondary p-3">-->
+<!--          &lt;!&ndash; <a href="home.php"> &ndash;&gt;-->
+<!--            <img src="{% static 'images/' %}logo-re.png" class="img-fluid" alt="logo">-->
+<!--          &lt;!&ndash; </a> &ndash;&gt;-->
+<!--      </div>-->
+  <!-- <div class="px-4 py-4">
+    <span class="text-capitalize text-white">Bullseye Lottery Home</span>
+  </div> -->
+                <ul class="nav flex-column me-3" id="side_bar_list">
+                    <div class="px-4 py-4">
+                        <span class="text-capitalize text-white">lottery details</span>
+                    </div>
+                    <div id="side_part1">
+                        <li class="one">
+                            <img src="{% static 'images/' %}LR.png" class="img-fluid me-2" alt="result"><a href="../favorites" class="text-white text-capitalize" id="side_latest_results">My Favorites</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}LT.png" class="img-fluid me-2" alt="info"> <a href="../recent" class="text-white text-capitalize" id="side_check_tickets">Recent Results</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}stats.png" class="img-fluid me-2" alt="info"> <a href="../lottery_history" class="text-white text-capitalize" id="side_draw_history">Draw History</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}stats.png" class="img-fluid me-2" alt="info"> <a href="../graphs" class="text-white text-capitalize" id="side_charts_graphs">Charts/Graphs</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}stats.png" class="img-fluid me-2" alt="info"> <a href="../user_history" class="text-white text-capitalize" id="side_user_draw_history">User Draw History</a>
+                        </li>
+                    </div>
+                    <div class="px-4 py-4">
+                        <span class="text-capitalize text-white">generate picks</span>
+                    </div>
+                    <div id="side_part2">
+                        <li class="one">
+                            <img src="{% static 'images/' %}PB.png" class="img-fluid me-2" alt="info"> <a href="Bullseye-Picks.php" class="text-white text-capitalize" id="side_bullseye_picks">BullsEye Picks</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}EJ.png" class="img-fluid me-2" alt="info"> <a href="Custom-Picks.php" class="text-white text-capitalize" id="side_custom_picks">Custom Picks</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}MM.png" class="img-fluid me-2" alt="info"> <a href="Wheeling-Picks.php" class="text-white text-capitalize" id="side_wheeling_picks">Wheeling Picks</a>
+                        </li>
+                        <li class="one">
+                            <img src="{% static 'images/' %}UKL.png" class="img-fluid me-2" alt="info"> <a href="Manual-Picks.php" class="text-white text-capitalize" id="side_manual_picks">Manual Pick Entry</a>
+                        </li>
+                    </div>
+                    <div class="px-4 py-4">
+                        <span class="text-capitalize text-white">about</span>
+                    </div>
+                    <li class="one">
+                        <img src="{% static 'images/' %}HI.png" class="img-fluid me-2" alt="info"> <a href="..\..\accounts\profile" class="text-white text-capitalize" id="side_settings">User Settings</a>
+                    </li>
+                    <li class="one">
+                        <img src="{% static 'images/' %}TC.png" class="img-fluid me-2" alt="info"> <a href="Terms-of-Service.php" class="text-white text-capitalize" id="side_terms">Terms & Conditions</a>
+                    </li>
+                    <li class="one">
+                        <img src="{% static 'images/' %}PP.png" class="img-fluid me-2" alt="info"> <a href="Privacy.php" class="text-white text-capitalize" id="side_privacy">Privacy Policy</a>
+                    </li>
+                    <li class="one">
+                        <img src="{% static 'images/' %}HI.png" class="img-fluid me-2" alt="info"> <a href="Contact.php" class="text-white text-capitalize" id="side_contact">Contact Us</a>
+                    </li>
+                    <li class="one">
+                        <img src="{% static 'images/' %}HI.png" class="img-fluid me-2" alt="info"> <a href="Help.php" class="text-white text-capitalize" id="side_help">Help</a>
+                    </li>
+                </ul>
+            </div>
+            {% block lottery-body %}{% endblock %}
+            <div class="lottery-page-footer">
+                {% block lottery-footer %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+import {call_for_add_favorite} from './common.js';

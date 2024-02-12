@@ -1,0 +1,16 @@
+  <div>
+      {% if value.second_balls_as_list|length > 0 %}
+{#        <div class="amount_text row">#}
+{#          <span class="mb-0 text_lgray text-capitalize">{{ value.second_draw_name }}</span>#}
+{#        </div>#}
+        {%  for ball in value.second_balls_as_list %}
+          <span class="balls {{ value.lottery.ball_color }}">{{  ball }}</span>
+        {%  endfor %}
+        {% if value.second_special_balls_as_list|length > 0 %}
+            {%  for ball in value.second_special_balls_as_list %}
+              <span class="balls {{ value.lottery.special_ball_color }} sballs">{{  ball }}</span>
+            {%  endfor %}
+        {% endif %}
+      {% endif %}
+  </div>
+

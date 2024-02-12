@@ -1,0 +1,133 @@
+{% load static unicorn %}
+
+<div class="" style="position: relative; width: 100%">
+    <div  class="text-center" style="margin: auto;">
+        <span class="text-white">
+            <select class="text-white text-capitalize font-size:30px" style="background-color:#0d1e25;" id="lotterySelect" unicorn:model="target_lottery" unicorn:change="lottery_select()">
+                {% for favorite in lotteries %}
+                    <option value="{{favorite.lottery.id}}">{{ favorite.lottery.game }} ({{ favorite.lottery.location }})</option>
+                {% endfor %}
+            </select>
+        </span>
+    </div>
+    <div class="main_body_wrapper  px-4">
+        <div>
+            <div class="row left_row_buffer">
+              <div class="col-12 col-md-6">
+                <div class="p-3 stats_inner d-flex align-items-center">
+                  <img src="{% static 'images/' %}bonus-promo.png" class="img-fluid me-4" alt="balance">
+                      <div class="amount_text">
+                          <span class="mb-0 text_lgray text-capitalize" id="last_draw_date">LAST DRAW</span>
+                            <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.latest_results.date }}</span>
+                              {%  with current_lottery.0.lottery.latest_results as results %}
+                                {% include "display_balls.html" %}
+                              {%  endwith %}
+                      </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="p-3 stats_inner d-flex align-items-center">
+                    <img src="{% static 'images/' %}stats.png" class="img-fluid me-4" alt="balance">
+                    <div class="amount_text">
+                        <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.next_result_date }}</span>
+                        <h5 class="text-warning mb-0" id="draw_countdown"></h5>
+                  </div>
+                </div>
+              </div>
+                  {% if current_lottery.0.lottery.jackpot|length > 0 %}
+                      <div class="row" id="jackpot_div">
+                        <div class="p-3 stats_inner d-flex align-items-center">
+                          <img src="{% static 'images/' %}unbeat.png" class="img-fluid me-4" alt="balance">
+                          <div class="amount_text">
+                            <span class="mb-0 text_lgray text-capitalize">JACKPOT</span>
+                            <h5 class="text-warning mb-0" id="jackpot_text">
+                                {{ current_lottery.0.lottery.jackpot }}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                  {% endif %}
+              </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-xl-3">
+            <div class="p-3 stats_inner d-flex align-items-center">
+              <div>
+                <span class="mb-0 text_lgray text-capitalize">BALLS TO VIEW</span>
+                <select id="ballType" name="ballType"  class="text-white mt-2 mb-4 text-capitalize" style="background-color:#0d1e25; font-size: 16px;min-width: 260px;display: inline-block;">
+                  <option id="ball_type_first_balls" value="first_balls">Ball(s)</option>
+                  <option id="ball_type_first_special_balls" value="first_special_balls">Special Ball(s)</option>
+                  <option id="ball_type_second_balls" value="second_balls">Second Draw Ball(s)</option>
+                  <option id="ball_type_second_special_balls" value="second_special_balls">Second Draw Speical Ball(s)</option>
+                  <option id="ball_type_third_balls" value="third_balls">Third Draw Ball(s)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="p-3 stats_inner d-flex align-items-center">
+              <div>
+              <span class="mb-0 text_lgray text-capitalize">GRAPH TYPE</span>
+                <select id="graphType" name="graphType"  class="text-white mt-2 mb-4 text-capitalize" style="background-color:#0d1e25; font-size: 16px;min-width: 260px;display: inline-block;">
+                  <option value="ballFreq">Ball Frequency</option>
+                  <option value="ballFreqSymbols">Ball Frequency With Symbols</option>
+                  <option value="ballSum">Sum of Balls w/ Average</option>
+                  <option value="pairs">Ball Pairs</option>
+                  <option value="triplets">Ball Triplets</option>
+                  <option value="ballInDraw">Balls in Each Draw</option>
+                  <option value="oddEven">Odd/Even</option>
+                  <option value="summary">Summary</option>
+                  <option value="deltas">Deltas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="p-3 stats_inner d-flex align-items-center">
+              <div>
+                <span class="mb-0 text_lgray text-capitalize">DISPLAY TYPE</span>
+                <select id="displayType" name="displayType"  class="text-white mt-2 mb-4 text-capitalize" style="background-color:#0d1e25; font-size: 16px;min-width: 260px;display: inline-block;">
+                  <option value="line">line</option>
+                  <option value="spline">spline</option>
+                  <option value="area">area</option>
+                  <option value="areaspline">areaspline</option>
+                  <option value="column">column</option>
+                  <option value="bar">bar</option>
+                  <option value="pie">pie</option>
+                  <option value="scatter">scatter</option>
+                  <option value="gauge">gauge</option>
+                  <option value="arearange">arearange</option>
+                  <option value="areasplinerange">areasplinerange</option>
+                  <option value="columnrange">columnrange</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-3">
+            <div class="p-3 stats_inner d-flex align-items-center">
+              <div>
+                <span class="mb-0 text_lgray text-capitalize" id="rangeValue">Draws: 20</span>
+                <br/>
+                <span class="mb-0 text_lgray text-capitalize"> </span>
+                <div>
+                  <input id="myRange" class="slider" max="100" min="5" type="range" value="20">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <div class="row">
+        <canvas id="myChart"></canvas>
+    </div>
+{#        <div class="row">#}
+{#              <h6 class="text-white text-center text-capitalize my-3"></h6>#}
+{#              <figure class="highcharts-figure">#}
+{#                <div id="container"></div>#}
+{#              </figure>#}
+{#          <div class="col-12">#}
+{#          </div>#}
+{#        </div>#}
+    </div>
+</div>

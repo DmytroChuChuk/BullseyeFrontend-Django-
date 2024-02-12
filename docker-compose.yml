@@ -1,0 +1,51 @@
+version: "3"
+networks:
+  # This special network is configured so that the local-ecs-endpoints service can bind
+  # to the specific IP address that ECS uses in production
+  default_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 169.254.170.0/24
+          gateway: 169.254.170.1
+
+services:
+  # This container vends AWS credentials to other containers (safer than using env vars)
+  # https://registry.hub.docker.com/r/amazon/amazon-ecs-local-container-endpoints
+  ecs-local-endpoints:
+    platform: linux/amd64
+    container_name: ecs-local-endpoints
+    image: amazon/amazon-ecs-local-container-endpoints:latest-amd64
+    networks:
+      default_network:
+        # This special IP address is recognized by the AWS SDKs and AWS CLI
+        ipv4_address: 169.254.170.2
+    volumes:
+      # Mount /var/run so we can access docker.sock and talk to Docker
+      - /var/run:/var/run
+      # Mount the shared configuration directory.
+      - $HOME/.aws/:/home/.aws/
+    environment:
+      # Define the home folder; AWS credentials will be read from $HOME/.aws
+      HOME: "/home"
+      # You can change which AWS CLI Profile is used
+      AWS_PROFILE: "default"
+
+  postgres:
+    container_name: postgres
+    image: postgres:15.2
+    networks:
+      default_network:
+        ipv4_address: 169.254.170.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=aktos
+      - POSTGRES_USER=aktos
+      - POSTGRES_PASSWORD=aktos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aktos"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+

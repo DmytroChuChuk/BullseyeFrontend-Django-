@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{%  endblock %}
+{% block body_class %}landing page{% endblock %}
+{% block content %}
+    <div>
+        <img class="block h-14 w-auto lg:hidden" src="{% static 'images/' %}logo-re.png">
+        <span style="float:right; padding:30px;">
+            <button type="button" class="border-radius: 50%; ">
+                <span>Sign In</span>
+            </button>
+            <button type="button" class="border-radius: 50%; ">
+                <a href="#pricing-plans"><span>Join Now</span></a>
+            </button>
+        </span>
+    </div>
+    <!-- HEADER + NAV -->
+    <div  style="width: 100%; border-width:10px;">
+        <div class="container mx-auto mt-12 md:mt-36 lg:mt-36 flex">
+            <div class="w-full lg:w-1/2 py-4 px-8 text-center md:text-left">
+                <div class="my-1">
+                    <span style="font-weight: 700; color: rgb(238 127 8); font-family: 'Inter', sans-serif; font-size: 4.5rem;">Play Smarter </span>
+                </div>
+                <div class="my-1">
+                    <span style="font-weight: 700; color: rgb(238 127 8); font-family: 'Inter', sans-serif; font-size: 4.5rem;">Win More!</span>
+                </div>
+                <!-- <div class="my-1">
+                    <span style="font-size: 3rem;" class="text-white font-bold leading-tight">BULLSEYE LOTTERY SOFTWARE</span>
+                </div> -->
+                <div class="my-2">
+                    <span style="font-size: 1.875rem;line-height: 2.25rem;font-weight: 700;color: #fff!important;">Lottery Analysis and Prediction made easy</span>
+                </div>
+                <div class="my-5">
+                    <a href="#pricing-plans" style="line-height: 1.75rem;font-size: 1.125rem;color: #fff!important;background-color: rgb(238 127 8);border-radius: 0.75rem;padding-left: 3rem!important;padding-right: 3rem!important;padding-bottom: 1rem!important;padding-top: 1rem!important;">Get started</a>
+                </div>
+            </div>
+{#            <div class="max-w-lg hidden md:block lg:w-1/2 py-4 px-8">#}
+{#                <img src="assets/images/home.png" alt="">#}
+{#            </div>#}
+        </div>
+    </div>
+
+    <!-- FEATURES SECTION -->
+    <div class="bg-gray-900 py-24 sm:py-32">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl lg:text-center">
+                <h2 style="line-height: 2rem;font-size: 1.5rem;color: rgb(238 127 8);letter-spacing: -0.025em;text-align: center!important;">Play Smarter</h2>
+                <p style="color: #fff!important;text-align: center!important;margin-top: 0.5rem!important;font-weight: 700;letter-spacing: -0.025em;line-height: 1;font-size: 3.75rem;">Bullseye Features</p>
+            </div>
+            <div style="background-color: #0d1e25;">
+                <div class="columns" style="background-color: #0d1e25;padding-left: 3rem!important;padding-right: 3rem!important;">
+                    <div style="font-size: 0.875rem;line-height: 1.25rem;background-color: rgb(31 41 55);flex-direction: column;display: flex;padding: 3rem!important;border-radius: 0.3rem!important;">
+                        <span style="font-weight: 700;font-size: 1.125rem;line-height: 1.75rem;color: #fff!important;">Access to Historical Data</span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">300 pre-loaded Lottery Games-Power Ball, Mega Millions, Lucky for Life, Lotto America, Cash For Life, Pick 3, Pick 4,Pick 5, Pick 6 and Pick 7 are all included.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Support for games in all US and Canada Lottery Game. More Countries will be added soon!</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Historical Data for all US and Canada Drawings</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.875rem;line-height: 1.25rem;background-color: rgb(31 41 55);flex-direction: column;display: flex;padding: 3rem!important;border-radius: 0.3rem!important;">
+                        <span style="font-weight: 700;font-size: 1.125rem;line-height: 1.75rem;color: #fff!important;">Updated In Real Time</span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Track your Winnings!</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Lotteries Updated Daily.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">No software to download. Mobile Friendly</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">14 Day Money Back Guarantee. Charting and analysis suite. Easy to spot trends and hot numbers!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="columns" style="background-color: #0d1e25;padding-left: 3rem!important;padding-right: 3rem!important;">
+                    <div style="font-size: 0.875rem;line-height: 1.25rem;background-color: rgb(31 41 55);flex-direction: column;display: flex;padding: 3rem!important;border-radius: 0.3rem!important;">
+                        <span class="font-bold text-lg text-white" style="font-weight: 700;font-size: 1.125rem;line-height: 1.75rem;color: #fff!important;">Simple Yet Powerful</span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Check your tickets for winning numbers.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Easy to use features.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Powerful tools to help you pick winning Combinations!</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.875rem;line-height: 1.25rem;background-color: rgb(31 41 55);flex-direction: column;display: flex;padding: 3rem!important;border-radius: 0.3rem!important;">
+                        <span class="font-bold text-lg text-white" style="font-weight: 700;font-size: 1.125rem;line-height: 1.75rem;color: #fff!important;">Quick & Easy</span>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Unlimited Bullseye Picks! Bullseye Pick” feature and Bullseye will automatically generate picks basedon a history of past drawings.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">Search past drawings for winning number combinations.</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">No software to download. Mobile Friendly</div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-12 col-md-1"><img style="height: 20px; width: 20px;" src="{% static 'images/' %}favicon.png"></div>
+                            <div class="col-12 col-md-11" style="color: #fff!important;font-weight: 700;">14-Day Money-Back Guarantee.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO SECTION -->
+    <div class="bg-gray-800">
+        <br/>
+        <div class="mx-auto max-w-2xl lg:text-center">
+            <p style="color: #fff!important;text-align: center!important;margin-top: 0.5rem!important;font-weight: 700;letter-spacing: -0.025em;line-height: 1;font-size: 3.75rem;">How it Works</p>
+        </div>
+        <br/>
+        <div class="container mx-auto px-6 pt-20 pb-8">
+            <div class="flex items-center justify-center mb-16">
+                <div class="w-full max-w-4xl">
+                    <div class="relative">
+                        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;" class="rounded-lg border-8 border-orange">
+                            <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/v97HCg7GxZ0?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg border-8 border-orange"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="bg-gray-800">
+        <div class="mx-auto max-w-7xl sm:px-4 pb-24 px-6 lg:px-8">
+            <div class="relative isolate overflow-hidden px-2 py-2 text-center sm:rounded-3xl sm:px-16">
+                <h2 class="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-white">Bullseye Lottery Analysis & Prediction</h2>
+                <p class="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-300">Keeping you in the game! For the cost of a few lottery tickets a month you get historical data, charts graphs and tools to see trends that give you the edge on winning combinations. Using our Bullseye Picks, we do all of the analysis for you.</p>
+                <div class="mt-10 flex items-center justify-center gap-x-6">
+                    <a href="#pricing-plans" class="rounded-md bg-orange px-3.5 py-1.5 text-base font-bold leading-7 text-white shadow-sm">Get started</a>
+                    <!-- <a href="#" class="text-base font-semibold leading-7 text-white">Learn more <span aria-hidden="true">→</span></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--- PRICING --->
+    <div class="bg-gray-900 py-10 sm:py-32">
+{#        <div class="mx-auto max-w-7xl px-6 lg:px-8">#}
+{#            <div class="mx-auto max-w-4xl text-center py-10" id="pricing-plans">#}
+{#                <p class="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">Pricing Plans</p>#}
+{#            </div>#}
+{#            <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-300">Join monthly or annually, cancel anytime. Log in to save your favorite games, create picks with our predictive algorithm, and track your winnings. Get started today and increase your chances of winning big!</p>#}
+{#            <div class="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-2">#}
+{##}
+{#                <div class="rounded-3xl p-8 xl:p-10 ring-1 ring-white/10">#}
+{#                    <div class="flex items-center justify-between gap-x-4">#}
+{#                        <h3 id="tier-enterprise" class="text-lg font-semibold leading-8 text-white">Monthly Subscription</h3>#}
+{#                    </div>#}
+{#                    <p class="mt-4 text-sm leading-6 text-gray-300">Month to month pricing. Cancel anytime.</p>#}
+{#                    <p class="mt-6 flex items-baseline gap-x-1">#}
+{#                        <!-- Price, update based on frequency toggle state -->#}
+{#                        <span class="text-4xl font-bold tracking-tight text-white">$2.99</span>#}
+{#                        <!-- Payment frequency, update based on frequency toggle state -->#}
+{#                        <span class="text-sm font-semibold leading-6 text-gray-300">/month</span>#}
+{#                    </p>#}
+{#                    <a href="https://buy.stripe.com/test_3cs3dachIc276ze3cd" aria-describedby="tier-enterprise" class="mt-6 block rounded-md py-2 px-3 text-center text-sm leading-6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-white/10 text-white hover:bg-white/20 focus-visible:outline-white">Get Plan</a>#}
+{#                </div>#}
+{##}
+{#                <div class="rounded-3xl p-8 xl:p-10 bg-white/5 ring-2 ring-orange">#}
+{#                    <div class="flex items-center justify-between gap-x-4">#}
+{#                        <h3 id="" class="text-lg font-semibold leading-8 text-white">Annual Subscription</h3>#}
+{##}
+{#                        <p class="rounded-full bg-orange py-1 px-2.5 text-xs font-semibold leading-5 text-white whitespace-nowrap">Most popular</p>#}
+{#                    </div>#}
+{#                    <p class="mt-4 text-sm leading-6 text-gray-300">Get 2 months free when you subscribe annually!</p>#}
+{#                    <p class="mt-6 flex items-baseline gap-x-1">#}
+{#                        <!-- Price, update based on frequency toggle state -->#}
+{#                        <span class="text-4xl font-bold tracking-tight text-white">$29.99</span>#}
+{#                        <!-- Payment frequency, update based on frequency toggle state -->#}
+{#                        <span class="text-sm font-semibold leading-6 text-gray-300">/year</span>#}
+{#                    </p>#}
+{#                    <a href="https://buy.stripe.com/test_4gwaFC95waY36zefYY" aria-describedby="" class="mt-6 block rounded-md py-2 px-3 text-center text-sm leading-6 font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 bg-orange text-white shadow-sm hover:bg-orange/80 focus-visible:bg-orange/80">Get Plan</a>#}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800" aria-labelledby="footer-heading">
+{#        <h2 id="footer-heading" class="sr-only">Footer</h2>#}
+{#        <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8 lg:py-32">#}
+{#            <div class="xl:grid xl:grid-cols-3 xl:gap-8">#}
+{#                <img class="h-20" src="assets/images/logo.png" alt="Company name">#}
+{#                <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">#}
+{#                    <div class="md:grid md:grid-cols-2 md:gap-8">#}
+{#                        <div>#}
+{#                            <h3 class="text-sm font-semibold leading-6 text-white">Quick Links</h3>#}
+{#                            <ul role="list" class="mt-6 space-y-4">#}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Home</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About Us</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Why User</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Contact</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="mt-10 md:mt-0">#}
+{#                            <h3 class="text-sm font-semibold leading-6 text-white">Help Links</h3>#}
+{#                            <ul role="list" class="mt-6 space-y-4">#}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Terms & Conditions</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Privacy Policy</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About Us</a>#}
+{#                                </li>#}
+{##}
+{#                                <li>#}
+{#                                    <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Support</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="md:grid md:grid-cols-2 md:gap-8">#}
+{#                        <div class="">#}
+{#                            <h3 class="text-sm font-semibold leading-6 text-white">Contact Us</h3>#}
+{#                            <ul role="list" class="mt-6 space-y-4">#}
+{#                                <li>#}
+{#                                    <a href="mailto:info@bullseye.com" class="text-sm leading-6 text-gray-300 hover:text-white">info@bullseye.com</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+    </footer>
+
+{%  endblock %}
+{##}
+{##}
+{#</body>#}
+{##}
+{#</html>#}

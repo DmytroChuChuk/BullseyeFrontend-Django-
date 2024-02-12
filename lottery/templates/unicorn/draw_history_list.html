@@ -1,0 +1,107 @@
+{% load static unicorn %}
+<div class="" style="position: relative; width: 100%">
+    <div  class="text-center" style="margin: auto;">
+        <span class="text-white">
+            <select class="text-white text-capitalize font-size:30px" style="background-color:#0d1e25;" id="lotterySelect" unicorn:model="target_lottery" unicorn:change="lottery_select()">
+                {% for favorite in lotteries %}
+                    <option value="{{favorite.lottery.id}}">{{ favorite.lottery.game }} ({{ favorite.lottery.location }})</option>
+                {% endfor %}
+            </select>
+        </span>
+    </div>
+    <div class="main_body_wrapper  px-4">
+        <div>
+            <div class="row left_row_buffer">
+              <div class="col-12 col-md-6">
+                <div class="p-3 stats_inner d-flex align-items-center">
+                  <img src="{% static 'images/' %}bonus-promo.png" class="img-fluid me-4" alt="balance">
+                      <div class="amount_text">
+                          <span class="mb-0 text_lgray text-capitalize" id="last_draw_date">LAST DRAW</span>
+                            <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.latest_results.date }}</span>
+                              {%  with current_lottery.0.lottery.latest_results as results %}
+                                {% include "display_balls.html" %}
+                              {%  endwith %}
+                      </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="row">
+                  <div class="p-3 stats_inner d-flex align-items-center">
+                    <img src="{% static 'images/' %}stats.png" class="img-fluid me-4" alt="balance">
+                    <div class="amount_text">
+                        <span class="mb-0 text_lgray text-capitalize">{{ current_lottery.0.lottery.next_result_date }}</span>
+                        <h5 class="text-warning mb-0" id="draw_countdown"></h5>
+                  </div>
+                </div>
+              </div>
+                  {% if current_lottery.0.lottery.jackpot|length > 0 %}
+                      <div class="row" id="jackpot_div">
+                        <div class="p-3 stats_inner d-flex align-items-center">
+                          <img src="{% static 'images/' %}unbeat.png" class="img-fluid me-4" alt="balance">
+                          <div class="amount_text">
+                            <span class="mb-0 text_lgray text-capitalize">JACKPOT</span>
+                            <h5 class="text-warning mb-0" id="jackpot_text">
+                                {{ current_lottery.0.lottery.jackpot }}
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                  {% endif %}
+              </div>
+            </div>
+        </div>
+        <div>
+            <div style="width: 100%"  unicorn:key="checked-key">
+                <div class="row">
+                    <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-2 text-center">
+                        {% if disable_previous %}
+                            <button unicorn:click="get_older()" unicorn:partial.key="checked-key" style="border: none; background-color: inherit;" disabled></button>
+                        {%  else %}
+                            <button unicorn:click="get_older()" unicorn:partial.key="checked-key" style="color: #007bff; border: none; background-color: inherit;" >OLDER</button>
+                        {%  endif %}
+                    </div>
+                    <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-8"></div>
+                    <div class="text-white mt-2 mb-4 text-capitalize col-12 col-md-6 col-xl-2 text-center">
+                        {% if disable_next  %}
+                            <button unicorn:click="get_newer()" unicorn:partial.key="checked-key" style=" border: none; background-color: inherit;"  disabled></button>
+                        {%  else %}
+                            <button unicorn:click="get_newer()" unicorn:partial.key="checked-key" style="color: #007bff; border: none; background-color: inherit;" >NEWER</button>
+                        {%  endif %}
+                    </div>
+                </div>
+
+                <div class="payment_table border border-secondary">
+                    <table id="data_table" class="table mb-0 text-white align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col"><span class="text-capitalize">Date</span></th>
+                                <th scope="col"><span class="text-capitalize" id="ball1_text">Draw</span></th>
+                                {%  if history.1.lottery.second_draw_name|length > 0 %}
+                                    <th scope="col"><span class="text-capitalize" id="ball2_text">{{ history.1.lottery.second_draw_name }}</span></th>
+                                {%  endif %}
+                                {%  if history.1.lottery.third_draw_name|length > 0 %}
+                                    <th scope="col"><span class="text-capitalize" id="ball2_text">{{ history.1.lottery.third_draw_name }}</span></th>
+                                {%  endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for value in history %}
+                                <tr>
+                                    <td>{{ value.date }}</td>
+                                    <td>{% include "display_first_balls.html" %}</td>
+                                    {% if value.second_draw_balls|length > 0 %}
+                                        <td>{% include "display_second_balls.html" %}</td>
+                                    {% endif %}
+                                    {% if value.third_draw_balls|length > 0 %}
+                                        <td>{% include "display_third_balls.html" %}</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

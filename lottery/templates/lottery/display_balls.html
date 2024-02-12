@@ -1,0 +1,28 @@
+  <div>
+      {%  for ball in results.balls_as_list %}
+          <span class="balls {{ results.lottery.ball_color }}">{{  ball }}</span>
+      {%  endfor %}
+      {%  for ball in results.special_balls_as_list %}
+          <span class="balls {{ results.lottery.special_ball_color }} sballs">{{  ball }}</span>
+      {%  endfor %}
+      <span class="multiplier">{{ results.multiplier }}</span>
+      {% if results.second_balls_as_list|length > 0 %}
+        <div class="amount_text" style="display: flex;flex-wrap: wrap; margin-right: -15px;">
+          <span class="mb-0 text_lgray text-capitalize">{{ results.lottery.second_draw_name }}</span>
+        </div>
+        {%  for ball in results.second_balls_as_list %}
+          <span class="balls {{ results.lottery.ball_color }}">{{  ball }}</span>
+        {%  endfor %}
+        {%  for ball in results.second_special_balls_as_list %}
+          <span class="balls {{ results.lottery.special_ball_color }} sballs">{{  ball }}</span>
+        {%  endfor %}
+      {% endif %}
+      {% if results.third_balls_as_list|length > 0 %}
+        <div class="amount_text" style="display: flex;flex-wrap: wrap; margin-right: -15px;">
+          <span class="mb-0 text_lgray text-capitalize">{{ results.lottery.third_draw_name }}</span>
+        </div>
+        {%  for ball in results.third_balls_as_list %}
+          <span class="balls {{ results.lottery.ball_color }}">{{  ball }}</span>
+        {%  endfor %}
+      {% endif %}
+  </div>

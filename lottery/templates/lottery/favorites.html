@@ -1,0 +1,53 @@
+{% extends "lottery/base_lottery.html" %}
+{% load unicorn static %}
+
+<!--{% block body_class %}lottery-favorites{% endblock %}-->
+
+{% block lottery-nav-bar %}
+{% endblock lottery-nav-bar %}
+
+{% block header-name %}My Favorites{% endblock header-name %}
+{% block extra_css %}{% unicorn_scripts %}{% endblock extra_css %}
+{% block lottery-body %}
+{% csrf_token %}
+  <!-- Main Wrapper -->
+{#  <div class="my_container my-container active-cont">#}
+{#    <ul>#}
+{#      {% for key,value in results.items %}#}
+{#        <li>{{ key }}</li>#}
+{#        <li>{{ value }}</li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  </div>#}
+
+  <div  style="position: relative; width: 100%">
+    {% unicorn 'favorite_list' %}
+  </div>
+{% endblock lottery-body %}
+{% block lottery-footer %}
+{% endblock lottery-footer %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static 'scripts/' %}common.js"></script>
+<script type="text/javascript" src="{% static 'scripts/' %}favorites.js"></script>
+<script>
+{#document.getElementById("addFavBtn").onclick = showAddFavorites;#}
+
+{#function showAddFavorites() {#}
+{#    // Get the modal#}
+{#    var modal = document.getElementById("myModal");#}
+{##}
+{#    // Get the button that opens the modal#}
+{#    var btn = document.getElementById("myBtn");#}
+{#    modal.style.display = "block";#}
+{##}
+{#    // Get the <span> element that closes the modal#}
+{#    var span = document.getElementsByClassName("close")[0];#}
+{##}
+{#    console.log("BEFORE");#}
+{#    // call_get_lottery_list(processLotteryList, null);#}
+{#    console.log("AFTER");#}
+{#}#}
+</script>
+{% endblock %}
+
